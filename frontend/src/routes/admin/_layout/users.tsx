@@ -16,7 +16,7 @@ function getUsersQueryOptions() {
   }
 }
 
-export const Route = createFileRoute("/_layout/admin")({
+export const Route = createFileRoute("/admin/_layout/users")({
   component: Admin,
   head: () => ({
     meta: [

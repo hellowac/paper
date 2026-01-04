@@ -13,15 +13,15 @@ import { type Item, Main } from "./Main"
 import { User } from "./User"
 
 const baseItems: Item[] = [
-  { icon: Home, title: "首页", path: "/" },
-  { icon: Briefcase, title: "图书", path: "/items" },
+  { icon: Home, title: "首页", path: "/admin" },
+  { icon: Briefcase, title: "图书", path: "/admin/items" },
 ]
 
 export function AppSidebar() {
   const { user: currentUser } = useAuth()
 
   const items = currentUser?.is_superuser
-    ? [...baseItems, { icon: Users, title: "用户", path: "/admin" }]
+    ? [...baseItems, { icon: Users, title: "用户", path: "/admin/users" }]
     : baseItems
 
   return (

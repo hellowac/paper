@@ -17,11 +17,11 @@ const NotFound = () => {
       </div>
 
       <p className="text-lg text-muted-foreground mb-4 text-center z-10">
-        The page you are looking for was not found.
+        您要查找的页面未找到。
       </p>
       <div className="z-10">
-        <Link to="/">
-          <Button className="mt-4">Go Back</Button>
+        <Link to="/public">
+          <Button className="mt-4">返回</Button>
         </Link>
       </div>
     </div>

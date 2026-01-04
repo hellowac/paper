@@ -19,7 +19,7 @@ const ErrorComponent = () => {
       <p className="text-lg text-muted-foreground mb-4 text-center z-10">
         未知错误，请重试！
       </p>
-      <Link to="/">
+      <Link to="/public">
         返回<Button>主页</Button>
       </Link>
     </div>
