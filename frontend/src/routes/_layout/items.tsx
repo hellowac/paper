@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_layout/items")({
   head: () => ({
     meta: [
       {
-        title: "Items - FastAPI Cloud",
+        title: "图书 - WAC图书管理系统",
       },
     ],
   }),
@@ -36,8 +36,8 @@ function ItemsTableContent() {
         <div className="rounded-full bg-muted p-4 mb-4">
           <Search className="h-8 w-8 text-muted-foreground" />
         </div>
-        <h3 className="text-lg font-semibold">You don't have any items yet</h3>
-        <p className="text-muted-foreground">Add a new item to get started</p>
+        <h3 className="text-lg font-semibold">系统重还没有任何图书</h3>
+        <p className="text-muted-foreground">添加新的图书，来开始使用</p>
       </div>
     )
   }
@@ -58,8 +58,8 @@ function Items() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Items</h1>
-          <p className="text-muted-foreground">Create and manage your items</p>
+          <h1 className="text-2xl font-bold tracking-tight">图书</h1>
+          <p className="text-muted-foreground">创建和管理图书</p>
         </div>
         <AddItem />
       </div>

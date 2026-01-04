@@ -25,7 +25,7 @@ function CopyId({ id }: { id: string }) {
         ) : (
           <Copy className="size-3" />
         )}
-        <span className="sr-only">Copy ID</span>
+        <span className="sr-only">复制 ID</span>
       </Button>
     </div>
   )
@@ -39,14 +39,14 @@ export const columns: ColumnDef<ItemPublic>[] = [
   },
   {
     accessorKey: "title",
-    header: "Title",
+    header: "标题",
     cell: ({ row }) => (
       <span className="font-medium">{row.original.title}</span>
     ),
   },
   {
     accessorKey: "description",
-    header: "Description",
+    header: "描述",
     cell: ({ row }) => {
       const description = row.original.description
       return (
@@ -56,7 +56,7 @@ export const columns: ColumnDef<ItemPublic>[] = [
             !description && "italic",
           )}
         >
-          {description || "No description"}
+          {description || "无描述"}
         </span>
       )
     },
