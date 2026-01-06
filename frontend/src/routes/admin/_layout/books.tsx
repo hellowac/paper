@@ -5,8 +5,8 @@ import { Suspense } from "react"
 
 import { ItemsService } from "@/client"
 import { DataTable } from "@/components/Common/DataTable"
-import AddItem from "@/components/Items/AddItem"
-import { columns } from "@/components/Items/columns"
+import AddBook from "@/components/Books/AddBook"
+import { columns } from "@/components/Books/columns"
 import PendingItems from "@/components/Pending/PendingItems"
 
 function getItemsQueryOptions() {
@@ -16,7 +16,7 @@ function getItemsQueryOptions() {
   }
 }
 
-export const Route = createFileRoute("/admin/_layout/items")({
+export const Route = createFileRoute("/admin/_layout/books")({
   component: Items,
   head: () => ({
     meta: [
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/admin/_layout/items")({
   }),
 })
 
-function ItemsTableContent() {
+function BooksTableContent() {
   const { data: items } = useSuspenseQuery(getItemsQueryOptions())
 
   if (items.data.length === 0) {
@@ -36,7 +36,7 @@ function ItemsTableContent() {
         <div className="rounded-full bg-muted p-4 mb-4">
           <Search className="h-8 w-8 text-muted-foreground" />
         </div>
-        <h3 className="text-lg font-semibold">系统重还没有任何图书</h3>
+        <h3 className="text-lg font-semibold">系统中还没有任何图书</h3>
         <p className="text-muted-foreground">添加新的图书，来开始使用</p>
       </div>
     )
@@ -48,7 +48,7 @@ function ItemsTableContent() {
 function ItemsTable() {
   return (
     <Suspense fallback={<PendingItems />}>
-      <ItemsTableContent />
+      <BooksTableContent />
     </Suspense>
   )
 }
@@ -61,7 +61,7 @@ function Items() {
           <h1 className="text-2xl font-bold tracking-tight">图书</h1>
           <p className="text-muted-foreground">创建和管理图书</p>
         </div>
-        <AddItem />
+        <AddBook />
       </div>
       <ItemsTable />
     </div>

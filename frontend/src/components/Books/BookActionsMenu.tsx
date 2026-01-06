@@ -8,14 +8,14 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import DeleteItem from "../Items/DeleteItem"
-import EditItem from "../Items/EditItem"
+import DeleteItem from "./DeleteBook"
+import EditItem from "./EditBook"
 
-interface ItemActionsMenuProps {
-  item: ItemPublic
+interface BookActionsMenuProps {
+  book: ItemPublic
 }
 
-export const ItemActionsMenu = ({ item }: ItemActionsMenuProps) => {
+export const BookActionsMenu = ({ book }: BookActionsMenuProps) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -26,8 +26,8 @@ export const ItemActionsMenu = ({ item }: ItemActionsMenuProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <EditItem item={item} onSuccess={() => setOpen(false)} />
-        <DeleteItem id={item.id} onSuccess={() => setOpen(false)} />
+        <EditItem item={book} onSuccess={() => setOpen(false)} />
+        <DeleteItem id={book.id} onSuccess={() => setOpen(false)} />
       </DropdownMenuContent>
     </DropdownMenu>
   )

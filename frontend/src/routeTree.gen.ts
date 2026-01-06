@@ -23,7 +23,7 @@ import { Route as AdminLayoutIndexRouteImport } from './routes/admin/_layout/ind
 import { Route as PublicLayoutMyBorrowRouteImport } from './routes/public/_layout/my-borrow'
 import { Route as AdminLayoutUsersRouteImport } from './routes/admin/_layout/users'
 import { Route as AdminLayoutSettingsRouteImport } from './routes/admin/_layout/settings'
-import { Route as AdminLayoutItemsRouteImport } from './routes/admin/_layout/items'
+import { Route as AdminLayoutBooksRouteImport } from './routes/admin/_layout/books'
 import { Route as PublicLayoutBooksIndexRouteImport } from './routes/public/_layout/books/index'
 import { Route as PublicLayoutBooksIdRouteImport } from './routes/public/_layout/books/$id'
 
@@ -97,9 +97,9 @@ const AdminLayoutSettingsRoute = AdminLayoutSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AdminLayoutRoute,
 } as any)
-const AdminLayoutItemsRoute = AdminLayoutItemsRouteImport.update({
-  id: '/items',
-  path: '/items',
+const AdminLayoutBooksRoute = AdminLayoutBooksRouteImport.update({
+  id: '/books',
+  path: '/books',
   getParentRoute: () => AdminLayoutRoute,
 } as any)
 const PublicLayoutBooksIndexRoute = PublicLayoutBooksIndexRouteImport.update({
@@ -120,7 +120,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/admin': typeof AdminLayoutRouteWithChildren
   '/public': typeof PublicLayoutRouteWithChildren
-  '/admin/items': typeof AdminLayoutItemsRoute
+  '/admin/books': typeof AdminLayoutBooksRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
   '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
@@ -136,7 +136,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/admin': typeof AdminLayoutIndexRoute
   '/public': typeof PublicLayoutIndexRoute
-  '/admin/items': typeof AdminLayoutItemsRoute
+  '/admin/books': typeof AdminLayoutBooksRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
   '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
@@ -154,7 +154,7 @@ export interface FileRoutesById {
   '/admin/_layout': typeof AdminLayoutRouteWithChildren
   '/public': typeof PublicRouteWithChildren
   '/public/_layout': typeof PublicLayoutRouteWithChildren
-  '/admin/_layout/items': typeof AdminLayoutItemsRoute
+  '/admin/_layout/books': typeof AdminLayoutBooksRoute
   '/admin/_layout/settings': typeof AdminLayoutSettingsRoute
   '/admin/_layout/users': typeof AdminLayoutUsersRoute
   '/public/_layout/my-borrow': typeof PublicLayoutMyBorrowRoute
@@ -172,7 +172,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin'
     | '/public'
-    | '/admin/items'
+    | '/admin/books'
     | '/admin/settings'
     | '/admin/users'
     | '/public/my-borrow'
@@ -188,7 +188,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/admin'
     | '/public'
-    | '/admin/items'
+    | '/admin/books'
     | '/admin/settings'
     | '/admin/users'
     | '/public/my-borrow'
@@ -205,7 +205,7 @@ export interface FileRouteTypes {
     | '/admin/_layout'
     | '/public'
     | '/public/_layout'
-    | '/admin/_layout/items'
+    | '/admin/_layout/books'
     | '/admin/_layout/settings'
     | '/admin/_layout/users'
     | '/public/_layout/my-borrow'
@@ -325,11 +325,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLayoutSettingsRouteImport
       parentRoute: typeof AdminLayoutRoute
     }
-    '/admin/_layout/items': {
-      id: '/admin/_layout/items'
-      path: '/items'
-      fullPath: '/admin/items'
-      preLoaderRoute: typeof AdminLayoutItemsRouteImport
+    '/admin/_layout/books': {
+      id: '/admin/_layout/books'
+      path: '/books'
+      fullPath: '/admin/books'
+      preLoaderRoute: typeof AdminLayoutBooksRouteImport
       parentRoute: typeof AdminLayoutRoute
     }
     '/public/_layout/books/': {
@@ -350,14 +350,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminLayoutRouteChildren {
-  AdminLayoutItemsRoute: typeof AdminLayoutItemsRoute
+  AdminLayoutBooksRoute: typeof AdminLayoutBooksRoute
   AdminLayoutSettingsRoute: typeof AdminLayoutSettingsRoute
   AdminLayoutUsersRoute: typeof AdminLayoutUsersRoute
   AdminLayoutIndexRoute: typeof AdminLayoutIndexRoute
 }
 
 const AdminLayoutRouteChildren: AdminLayoutRouteChildren = {
-  AdminLayoutItemsRoute: AdminLayoutItemsRoute,
+  AdminLayoutBooksRoute: AdminLayoutBooksRoute,
   AdminLayoutSettingsRoute: AdminLayoutSettingsRoute,
   AdminLayoutUsersRoute: AdminLayoutUsersRoute,
   AdminLayoutIndexRoute: AdminLayoutIndexRoute,

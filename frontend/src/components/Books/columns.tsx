@@ -5,7 +5,7 @@ import type { ItemPublic } from "@/client"
 import { Button } from "@/components/ui/button"
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard"
 import { cn } from "@/lib/utils"
-import { ItemActionsMenu } from "./ItemActionsMenu"
+import { BookActionsMenu } from "./BookActionsMenu"
 
 function CopyId({ id }: { id: string }) {
   const [copiedText, copy] = useCopyToClipboard()
@@ -66,7 +66,7 @@ export const columns: ColumnDef<ItemPublic>[] = [
     header: () => <span className="sr-only">Actions</span>,
     cell: ({ row }) => (
       <div className="flex justify-end">
-        <ItemActionsMenu item={row.original} />
+        <BookActionsMenu book={row.original} />
       </div>
     ),
   },
