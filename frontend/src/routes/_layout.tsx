@@ -14,13 +14,18 @@ export const Route = createFileRoute('/_layout')({
       throw redirect({
         to: "/login",
       })
+    } else {
+      throw redirect({
+        to: "/public",
+      })
+
     }
 
-    const user = await UsersService.readUserMe()
+    // const user = await UsersService.readUserMe()
 
-    throw redirect({
-      to: user.is_superuser ? '/admin' : '/public',
-    })
+    // throw redirect({
+    //   to: user.is_superuser ? '/admin' : '/public',
+    // })
 
   },
   head: () => ({

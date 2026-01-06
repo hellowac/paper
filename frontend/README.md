@@ -1,6 +1,6 @@
 # FastAPI 项目 - 前端
 
-前端基于 Vite、React、TypeScript、TanStack Query、TanStack Router 以及 Tailwind CSS 构建。
+前端基于 [Vite](https://cn.vite.dev/)、[React](https://zh-hans.react.dev/)、[TypeScript](https://www.typescriptlang.org/docs/)、[TanStack Query](https://tanstack.com.cn/query/latest)、[TanStack Router](https://tanstack.com.cn/router/latest) 以及 [Tailwind CSS](https://tailwindcss.com/) 构建。
 
 ## 前端开发
 

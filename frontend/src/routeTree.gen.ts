@@ -20,6 +20,8 @@ import { Route as PublicLayoutRouteImport } from './routes/public/_layout'
 import { Route as AdminLayoutRouteImport } from './routes/admin/_layout'
 import { Route as PublicLayoutIndexRouteImport } from './routes/public/_layout/index'
 import { Route as AdminLayoutIndexRouteImport } from './routes/admin/_layout/index'
+import { Route as PublicLayoutMyBorrowRouteImport } from './routes/public/_layout/my-borrow'
+import { Route as PublicLayoutBooksRouteImport } from './routes/public/_layout/books'
 import { Route as AdminLayoutUsersRouteImport } from './routes/admin/_layout/users'
 import { Route as AdminLayoutSettingsRouteImport } from './routes/admin/_layout/settings'
 import { Route as AdminLayoutItemsRouteImport } from './routes/admin/_layout/items'
@@ -79,6 +81,16 @@ const AdminLayoutIndexRoute = AdminLayoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminLayoutRoute,
 } as any)
+const PublicLayoutMyBorrowRoute = PublicLayoutMyBorrowRouteImport.update({
+  id: '/my-borrow',
+  path: '/my-borrow',
+  getParentRoute: () => PublicLayoutRoute,
+} as any)
+const PublicLayoutBooksRoute = PublicLayoutBooksRouteImport.update({
+  id: '/books',
+  path: '/books',
+  getParentRoute: () => PublicLayoutRoute,
+} as any)
 const AdminLayoutUsersRoute = AdminLayoutUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -105,6 +117,8 @@ export interface FileRoutesByFullPath {
   '/admin/items': typeof AdminLayoutItemsRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
+  '/public/books': typeof PublicLayoutBooksRoute
+  '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
   '/admin/': typeof AdminLayoutIndexRoute
   '/public/': typeof PublicLayoutIndexRoute
 }
@@ -118,6 +132,8 @@ export interface FileRoutesByTo {
   '/admin/items': typeof AdminLayoutItemsRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
+  '/public/books': typeof PublicLayoutBooksRoute
+  '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -133,6 +149,8 @@ export interface FileRoutesById {
   '/admin/_layout/items': typeof AdminLayoutItemsRoute
   '/admin/_layout/settings': typeof AdminLayoutSettingsRoute
   '/admin/_layout/users': typeof AdminLayoutUsersRoute
+  '/public/_layout/books': typeof PublicLayoutBooksRoute
+  '/public/_layout/my-borrow': typeof PublicLayoutMyBorrowRoute
   '/admin/_layout/': typeof AdminLayoutIndexRoute
   '/public/_layout/': typeof PublicLayoutIndexRoute
 }
@@ -148,6 +166,8 @@ export interface FileRouteTypes {
     | '/admin/items'
     | '/admin/settings'
     | '/admin/users'
+    | '/public/books'
+    | '/public/my-borrow'
     | '/admin/'
     | '/public/'
   fileRoutesByTo: FileRoutesByTo
@@ -161,6 +181,8 @@ export interface FileRouteTypes {
     | '/admin/items'
     | '/admin/settings'
     | '/admin/users'
+    | '/public/books'
+    | '/public/my-borrow'
   id:
     | '__root__'
     | '/_layout'
@@ -175,6 +197,8 @@ export interface FileRouteTypes {
     | '/admin/_layout/items'
     | '/admin/_layout/settings'
     | '/admin/_layout/users'
+    | '/public/_layout/books'
+    | '/public/_layout/my-borrow'
     | '/admin/_layout/'
     | '/public/_layout/'
   fileRoutesById: FileRoutesById
@@ -268,6 +292,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLayoutIndexRouteImport
       parentRoute: typeof AdminLayoutRoute
     }
+    '/public/_layout/my-borrow': {
+      id: '/public/_layout/my-borrow'
+      path: '/my-borrow'
+      fullPath: '/public/my-borrow'
+      preLoaderRoute: typeof PublicLayoutMyBorrowRouteImport
+      parentRoute: typeof PublicLayoutRoute
+    }
+    '/public/_layout/books': {
+      id: '/public/_layout/books'
+      path: '/books'
+      fullPath: '/public/books'
+      preLoaderRoute: typeof PublicLayoutBooksRouteImport
+      parentRoute: typeof PublicLayoutRoute
+    }
     '/admin/_layout/users': {
       id: '/admin/_layout/users'
       path: '/users'
@@ -321,10 +359,14 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PublicLayoutRouteChildren {
+  PublicLayoutBooksRoute: typeof PublicLayoutBooksRoute
+  PublicLayoutMyBorrowRoute: typeof PublicLayoutMyBorrowRoute
   PublicLayoutIndexRoute: typeof PublicLayoutIndexRoute
 }
 
 const PublicLayoutRouteChildren: PublicLayoutRouteChildren = {
+  PublicLayoutBooksRoute: PublicLayoutBooksRoute,
+  PublicLayoutMyBorrowRoute: PublicLayoutMyBorrowRoute,
   PublicLayoutIndexRoute: PublicLayoutIndexRoute,
 }
 
