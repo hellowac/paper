@@ -21,10 +21,11 @@ import { Route as AdminLayoutRouteImport } from './routes/admin/_layout'
 import { Route as PublicLayoutIndexRouteImport } from './routes/public/_layout/index'
 import { Route as AdminLayoutIndexRouteImport } from './routes/admin/_layout/index'
 import { Route as PublicLayoutMyBorrowRouteImport } from './routes/public/_layout/my-borrow'
-import { Route as PublicLayoutBooksRouteImport } from './routes/public/_layout/books'
 import { Route as AdminLayoutUsersRouteImport } from './routes/admin/_layout/users'
 import { Route as AdminLayoutSettingsRouteImport } from './routes/admin/_layout/settings'
 import { Route as AdminLayoutItemsRouteImport } from './routes/admin/_layout/items'
+import { Route as PublicLayoutBooksIndexRouteImport } from './routes/public/_layout/books/index'
+import { Route as PublicLayoutBooksIdRouteImport } from './routes/public/_layout/books/$id'
 
 const PublicRouteImport = createFileRoute('/public')()
 const AdminRouteImport = createFileRoute('/admin')()
@@ -86,11 +87,6 @@ const PublicLayoutMyBorrowRoute = PublicLayoutMyBorrowRouteImport.update({
   path: '/my-borrow',
   getParentRoute: () => PublicLayoutRoute,
 } as any)
-const PublicLayoutBooksRoute = PublicLayoutBooksRouteImport.update({
-  id: '/books',
-  path: '/books',
-  getParentRoute: () => PublicLayoutRoute,
-} as any)
 const AdminLayoutUsersRoute = AdminLayoutUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -106,6 +102,16 @@ const AdminLayoutItemsRoute = AdminLayoutItemsRouteImport.update({
   path: '/items',
   getParentRoute: () => AdminLayoutRoute,
 } as any)
+const PublicLayoutBooksIndexRoute = PublicLayoutBooksIndexRouteImport.update({
+  id: '/books/',
+  path: '/books/',
+  getParentRoute: () => PublicLayoutRoute,
+} as any)
+const PublicLayoutBooksIdRoute = PublicLayoutBooksIdRouteImport.update({
+  id: '/books/$id',
+  path: '/books/$id',
+  getParentRoute: () => PublicLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
@@ -117,10 +123,11 @@ export interface FileRoutesByFullPath {
   '/admin/items': typeof AdminLayoutItemsRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
-  '/public/books': typeof PublicLayoutBooksRoute
   '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
   '/admin/': typeof AdminLayoutIndexRoute
   '/public/': typeof PublicLayoutIndexRoute
+  '/public/books/$id': typeof PublicLayoutBooksIdRoute
+  '/public/books': typeof PublicLayoutBooksIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -132,8 +139,9 @@ export interface FileRoutesByTo {
   '/admin/items': typeof AdminLayoutItemsRoute
   '/admin/settings': typeof AdminLayoutSettingsRoute
   '/admin/users': typeof AdminLayoutUsersRoute
-  '/public/books': typeof PublicLayoutBooksRoute
   '/public/my-borrow': typeof PublicLayoutMyBorrowRoute
+  '/public/books/$id': typeof PublicLayoutBooksIdRoute
+  '/public/books': typeof PublicLayoutBooksIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,10 +157,11 @@ export interface FileRoutesById {
   '/admin/_layout/items': typeof AdminLayoutItemsRoute
   '/admin/_layout/settings': typeof AdminLayoutSettingsRoute
   '/admin/_layout/users': typeof AdminLayoutUsersRoute
-  '/public/_layout/books': typeof PublicLayoutBooksRoute
   '/public/_layout/my-borrow': typeof PublicLayoutMyBorrowRoute
   '/admin/_layout/': typeof AdminLayoutIndexRoute
   '/public/_layout/': typeof PublicLayoutIndexRoute
+  '/public/_layout/books/$id': typeof PublicLayoutBooksIdRoute
+  '/public/_layout/books/': typeof PublicLayoutBooksIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -166,10 +175,11 @@ export interface FileRouteTypes {
     | '/admin/items'
     | '/admin/settings'
     | '/admin/users'
-    | '/public/books'
     | '/public/my-borrow'
     | '/admin/'
     | '/public/'
+    | '/public/books/$id'
+    | '/public/books'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -181,8 +191,9 @@ export interface FileRouteTypes {
     | '/admin/items'
     | '/admin/settings'
     | '/admin/users'
-    | '/public/books'
     | '/public/my-borrow'
+    | '/public/books/$id'
+    | '/public/books'
   id:
     | '__root__'
     | '/_layout'
@@ -197,10 +208,11 @@ export interface FileRouteTypes {
     | '/admin/_layout/items'
     | '/admin/_layout/settings'
     | '/admin/_layout/users'
-    | '/public/_layout/books'
     | '/public/_layout/my-borrow'
     | '/admin/_layout/'
     | '/public/_layout/'
+    | '/public/_layout/books/$id'
+    | '/public/_layout/books/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -299,13 +311,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicLayoutMyBorrowRouteImport
       parentRoute: typeof PublicLayoutRoute
     }
-    '/public/_layout/books': {
-      id: '/public/_layout/books'
-      path: '/books'
-      fullPath: '/public/books'
-      preLoaderRoute: typeof PublicLayoutBooksRouteImport
-      parentRoute: typeof PublicLayoutRoute
-    }
     '/admin/_layout/users': {
       id: '/admin/_layout/users'
       path: '/users'
@@ -326,6 +331,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/items'
       preLoaderRoute: typeof AdminLayoutItemsRouteImport
       parentRoute: typeof AdminLayoutRoute
+    }
+    '/public/_layout/books/': {
+      id: '/public/_layout/books/'
+      path: '/books'
+      fullPath: '/public/books'
+      preLoaderRoute: typeof PublicLayoutBooksIndexRouteImport
+      parentRoute: typeof PublicLayoutRoute
+    }
+    '/public/_layout/books/$id': {
+      id: '/public/_layout/books/$id'
+      path: '/books/$id'
+      fullPath: '/public/books/$id'
+      preLoaderRoute: typeof PublicLayoutBooksIdRouteImport
+      parentRoute: typeof PublicLayoutRoute
     }
   }
 }
@@ -359,15 +378,17 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface PublicLayoutRouteChildren {
-  PublicLayoutBooksRoute: typeof PublicLayoutBooksRoute
   PublicLayoutMyBorrowRoute: typeof PublicLayoutMyBorrowRoute
   PublicLayoutIndexRoute: typeof PublicLayoutIndexRoute
+  PublicLayoutBooksIdRoute: typeof PublicLayoutBooksIdRoute
+  PublicLayoutBooksIndexRoute: typeof PublicLayoutBooksIndexRoute
 }
 
 const PublicLayoutRouteChildren: PublicLayoutRouteChildren = {
-  PublicLayoutBooksRoute: PublicLayoutBooksRoute,
   PublicLayoutMyBorrowRoute: PublicLayoutMyBorrowRoute,
   PublicLayoutIndexRoute: PublicLayoutIndexRoute,
+  PublicLayoutBooksIdRoute: PublicLayoutBooksIdRoute,
+  PublicLayoutBooksIndexRoute: PublicLayoutBooksIndexRoute,
 }
 
 const PublicLayoutRouteWithChildren = PublicLayoutRoute._addFileChildren(
